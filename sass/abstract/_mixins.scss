@@ -1,0 +1,65 @@
+@mixin clearfix {
+    &::after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin absCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+// MEDIA QUERY MANAGER:
+
+// 600         Phone
+// 600-900     Tablet Portrait
+// 900-1200    Tablet Landscape
+// 1200-1800   our style applies
+// 1800+       Big screen desktop
+
+
+// BREAKPOINTS ARGUMENTS:
+
+// phone
+// tab-port
+// tab-land
+// big-desktop
+
+
+// ORDER:
+
+// base > typography + layouts > page layouts > components
+
+
+@mixin respond($breakPoint){
+
+    @if $breakPoint == phone {
+        @media only screen and (max-width:37.5em) { // 600px
+            @content;
+        }
+    }
+
+    @if $breakPoint == tab-port {
+        @media only screen and (max-width:56.25em) { // 900px
+            @content;
+        }
+    }
+
+    @if $breakPoint == tab-land {
+        @media only screen and (max-width:75em) { // 1200px
+            @content;
+        }
+    }
+    
+    @if $breakPoint == big-desktop {
+        @media only screen and (min-width:112.5em) {  // 1800px
+            @content;
+        }
+    }
+}
